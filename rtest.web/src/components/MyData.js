@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Row, Col, Grid, Thumbnail, Panel, Navbar, Jumbotron, ButtonToolbar, Button } from 'react-bootstrap';
-import { CardStack, Card } from 'react-cardstack';
 
 export default class MyData extends React.Component {
 
@@ -30,21 +29,6 @@ export default class MyData extends React.Component {
             </span>
           </div>
 
-        <CardStack
-        height={500}
-        width={400}
-        background='#f8f8f8'
-        hoverOffset={25}>
-
-        <Card background='#2980B9'>
-            <h1>Number 1</h1>
-        </Card>
-
-        <Card background='#27AE60'>
-            <h1>Number 2</h1>
-        </Card>
-
-        </CardStack>
         );
       }
 
