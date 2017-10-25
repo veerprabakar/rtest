@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-
 import { Row, Col, Grid, Thumbnail, Panel, Navbar, Jumbotron, ButtonToolbar, Button } from 'react-bootstrap';
+import { CardStack, Card } from 'react-cardstack';
 
 export default class MyData extends React.Component {
 
@@ -13,11 +13,12 @@ export default class MyData extends React.Component {
             return this.renderLoadingView();
         }
         return ( 
-           
+           <Panel>
             <Grid>
             <Row>
             {this.renderData(this.state.mdata)} 
             </Row></Grid>
+            </Panel>
             );
     }
 
@@ -25,9 +26,25 @@ export default class MyData extends React.Component {
         return (
           <div>
             <span>
-            <Button onClick={this.GetData}>Load</Button>
+            <Button onClick={this.GetData(this)}>Load</Button>
             </span>
           </div>
+
+        <CardStack
+        height={500}
+        width={400}
+        background='#f8f8f8'
+        hoverOffset={25}>
+
+        <Card background='#2980B9'>
+            <h1>Number 1</h1>
+        </Card>
+
+        <Card background='#27AE60'>
+            <h1>Number 2</h1>
+        </Card>
+
+        </CardStack>
         );
       }
 
@@ -41,16 +58,20 @@ export default class MyData extends React.Component {
         {
             return(
                 <Col xs={6} md={4}>
-                    <Thumbnail className="movie-box"> 
-                        <h3 className="movie-name">
+                    <Thumbnail className="box"> 
+                        <h3 className="country-name">
                             {country.name} 
                         </h3>
 
-                        <h5>
+                        <h4>
                             {country.capital}
+                        </h4>
+
+                        <h5>
+                            {country.subregion}
                         </h5>
 
-                        <Button>Connect</Button>
+                        <Button>...</Button>
                     </Thumbnail>
                 </Col>
             );
@@ -58,14 +79,14 @@ export default class MyData extends React.Component {
         return  retval;
     }
 
-    async GetData()
+    async GetData(curComp)
     {
         // var url = 'https://restcountries.eu/rest/v2/all';
         let response = await fetch('https://restcountries.eu/rest/v2/all');
         let responseJson = await response.json();
         console.log(responseJson);
 
-        setState({
+        curComp.setState({
             isLoading: false,
             mdata: responseJson
         });

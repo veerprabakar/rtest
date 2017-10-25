@@ -27,13 +27,16 @@
     
   }
 
-.movie-name
+.country-name
 {
   color: brown;
+  text-align: left;
+  margin: 1px;
 }
 
-.movie-box
+.box
 {
+  text-align: left;
   border: 1px;
   border-color: #222;
 }
